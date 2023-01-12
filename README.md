@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+# Project-1: Creating a TextUtils app:
+=> Description of our app: It is a text document editor. It will contain a Text box in which we will be adding our text.
+
+**Some of its features will be:**
+1`Word Counting.`
+2`Removing Extra spaces.`
+3`Capitalizing the text of the document.`
+4`Adding Lowercase and uppercase to the text.`
