@@ -1,14 +1,13 @@
 
-import cardComponent from './Components/cardComponent'
 import './App.css'
-import CardComponent from './Components/cardComponent'
+import CardComponent from './Components/Card'
 
 function App() {
 
 
   return (
       <>
-          <CardComponent userName = "Siddhartha"  />
+          <CardComponent userName = "Siddhartha"  contact= "conect with me"/>
           <CardComponent userName = "Khushi" contact = "contact with my manager"/>
       </>
   )

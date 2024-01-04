@@ -1,6 +1,6 @@
 
 
-function CardComponent({userName, contact = "not vailbale"}){
+function Card({userName, contact = "not vailbale"}){
     return(
 
         <>
@@ -26,4 +26,4 @@ function CardComponent({userName, contact = "not vailbale"}){
     )
 }
 
-export default CardComponent;
+export default Card;
