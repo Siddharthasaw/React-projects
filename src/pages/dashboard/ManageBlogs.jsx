@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, IconButton } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
-import FormModal from "./Components/FormModal"; // Correct import path
+import { useNavigate } from "react-router-dom";
 
 const ManageBlogs = () => {
-  // Dummy Blogs Data (Baad me API se fetch karenge)
+  const navigate = useNavigate();
   const [blogs, setBlogs] = useState([
-    { id: 1, title: "Forex Trading Tips", author: "Admin", date: "2024-02-22" },
-    { id: 2, title: "Best Trading Bots", author: "John Doe", date: "2024-02-20" },
+    { id: 1, title: "Forex Trading Tips", author: "Admin", date: "2024-02-22", content: "", image: "", keywords: "" },
+    { id: 2, title: "Best Trading Bots", author: "John Doe", date: "2024-02-20", content: "", image: "", keywords: "" },
   ]);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentBlog, setCurrentBlog] = useState(null);
-
-  // Delete Blog Function
   const handleDelete = (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this blog?");
     if (confirmDelete) {
@@ -21,26 +17,10 @@ const ManageBlogs = () => {
     }
   };
 
-  // Add/Edit Blog Function
-  const handleAddEditBlog = (blog) => {
-    if (blog.id) {
-      setBlogs(blogs.map(b => (b.id === blog.id ? blog : b)));
-    } else {
-      setBlogs([...blogs, { ...blog, id: Date.now() }]);
-    }
-    setIsModalOpen(false);
-  };
-
-  // Open Modal for Add/Edit
-  const openModal = (blog = null) => {
-    setCurrentBlog(blog);
-    setIsModalOpen(true);
-  };
-
   return (
     <div>
       <h2>Manage Blogs</h2>
-      <Button variant="contained" color="primary" onClick={() => openModal()}>
+      <Button variant="contained" color="primary" onClick={() => navigate("/admin/manage-blogs/new")}>
         Add New Blog
       </Button>
       <TableContainer component={Paper}>
@@ -60,7 +40,7 @@ const ManageBlogs = () => {
                 <TableCell>{blog.author}</TableCell>
                 <TableCell>{blog.date}</TableCell>
                 <TableCell>
-                  <IconButton color="primary" onClick={() => openModal(blog)}>
+                  <IconButton color="primary" onClick={() => navigate(`/admin/manage-blogs/edit/${blog.id}`)}>
                     <Edit />
                   </IconButton>
                   <IconButton color="error" onClick={() => handleDelete(blog.id)}>
@@ -72,7 +52,6 @@ const ManageBlogs = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <FormModal open={isModalOpen} onClose={() => setIsModalOpen(false)} onSave={handleAddEditBlog} blog={currentBlog} />
     </div>
   );
 };

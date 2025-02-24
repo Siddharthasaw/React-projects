@@ -15,9 +15,7 @@ const AdminNavbar = ({ toggleSidebar }) => {
         </IconButton>
         <Box sx={{ display: "flex", alignItems: "center", gap: 2, flexGrow: 1 }}>
           <img src={logo} alt="Logo" style={{ height: "40px" }} />
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Admin Dashboard
-          </Typography>
+         
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <IconButton color="inherit">
