@@ -1,9 +1,9 @@
 import React from "react";
-import Banner from "../Components/Banner";
+
 import Ticker from "../Components/Ticker";
 import BlogCard from "../Components/BlogCard";
-import Testimonials from "../Components/Testimonials";
-import PrivacyPolicy from "./PrivacyPolicy";
+import Testimonial from "../Components/Testimonials";
+import CTASection from "../Components/CTASection";  // Import the CTASection component
 
 
 
@@ -12,8 +12,10 @@ const Home = () => {
     <>
       
       <Ticker />
-      <BlogCard />
-      <Testimonials />
+      <BlogCard />  
+      <Testimonial/>
+      <CTASection /> {/* Add the CTASection component */} 
+      
     </>
   );
 };

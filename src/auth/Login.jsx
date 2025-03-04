@@ -34,7 +34,6 @@ export default function Login() {
           p: 3,
           boxShadow: 3,
           borderRadius: 2,
-          backgroundColor: "#fff",
           padding:"70px 30px 70px 30px",
           backgroundColor: "#ecf0f6",
         }}

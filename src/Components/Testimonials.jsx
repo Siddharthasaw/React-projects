@@ -38,6 +38,31 @@ const testimonials = [
     rating: "⭐⭐⭐⭐⭐",
     text: "This app has transformed my business. The automation features are top-notch and have saved me so much time.",
   },
+
+  {
+    name: "Rebecca",
+    image: "https://via.placeholder.com/50",
+    rating: "⭐⭐⭐⭐⭐",
+    text: "I'll be using this app on all of my stores and the stores I build for my students. Y'all are literally the best thing I have found for automating my sales.",
+  },
+  {
+    name: "Josmar",
+    image: "https://via.placeholder.com/50",
+    rating: "⭐⭐⭐⭐⭐",
+    text: "Works like a charm. I love the ease of the app and would highly recommend purchasing their monthly program to create a perfect selling opportunity for yourself.",
+  },
+  {
+    name: "Kimberley",
+    image: "https://via.placeholder.com/50",
+    rating: "⭐⭐⭐⭐⭐",
+    text: "I didn’t even know where to start as far as advertising goes or how to reach people. This really made this part so easy and effective, thank you!",
+  },
+  {
+    name: "Michael",
+    image: "https://via.placeholder.com/50",
+    rating: "⭐⭐⭐⭐⭐",
+    text: "This app has transformed my business. The automation features are top-notch and have saved me so much time.",
+  },
 ];
 
 export default function Testimonials() {

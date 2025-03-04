@@ -1,72 +1,60 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Box, Typography, Grid } from "@mui/material";
+import React, { useEffect } from "react";
 
-const initialData = [
-  { name: "EUR/USD", price: 1.04277 },
-  { name: "GBP/USD", price: 1.26055 },
-  { name: "USD/JPY", price: 151.803 },
-  { name: "XAU/USD", price: 2944.35 },
-  { name: "SILVER", price: 32.982 },
-  { name: "BITCOIN", price: 96318.36 },
-];
-
-const MarketTicker = () => {
-  const [data, setData] = useState(initialData);
+const Ticker = () => {
+  useEffect(() => {
+    if (!document.getElementById("tradingview-script-forex")) {
+      const script1 = document.createElement("script");
+      script1.id = "tradingview-script-forex";
+      script1.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+      script1.async = true;
+      script1.innerHTML = JSON.stringify({
+        symbols: [
+          { proName: "FX:EURUSD", title: "EUR/USD" },
+          { proName: "FX:GBPUSD", title: "GBP/USD" },
+          { proName: "FX:USDJPY", title: "USD/JPY" },
+          { proName: "OANDA:XAUUSD", title: "Gold" },
+        ],
+        colorTheme: "light",
+        isTransparent: false,
+        displayMode: "adaptive",
+        locale: "en",
+      });
+      document.getElementById("tradingview-widget-forex").appendChild(script1);
+    }
+  }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setData((prevData) =>
-        prevData.map((item) => {
-          const change = (Math.random() * 0.5 - 0.25).toFixed(5); // Random price change
-          const newPrice = parseFloat((item.price + parseFloat(change)).toFixed(5));
-          return { ...item, price: newPrice, change: parseFloat(change) };
-        })
-      );
-    }, 2000); // Update every 2 seconds
-
-    return () => clearInterval(interval);
+    if (!document.getElementById("tradingview-script-crypto")) {
+      const script2 = document.createElement("script");
+      script2.id = "tradingview-script-crypto";
+      script2.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+      script2.async = true;
+      script2.innerHTML = JSON.stringify({
+        symbols: [
+          { proName: "CRYPTO:BTCUSD", title: "Bitcoin" },
+          { proName: "CRYPTO:ETHUSD", title: "Ethereum" },
+          { proName: "CRYPTO:LTCUSD", title: "Litecoin" },
+          { proName: "CRYPTO:XRPUSD", title: "Ripple" },
+        ],
+        colorTheme: "light",
+        isTransparent: false,
+        displayMode: "adaptive",
+        locale: "en",
+      });
+      document.getElementById("tradingview-widget-crypto").appendChild(script2);
+    }
   }, []);
 
   return (
-    <Box sx={{ width: "100%", padding: "20px", backgroundColor: "#f8f9fa" }}>
-      <Grid container spacing={2} justifyContent="center">
-        {data.map((item) => (
-          <Grid item xs={6} sm={4} md={3} lg={2} key={item.name}>
-            <motion.div
-              initial={{ opacity: 0.5, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              style={{
-                textAlign: "center",
-                fontSize: "18px",
-                fontWeight: "bold",
-                color: "#333",
-                padding: "10px",
-                borderRadius: "8px",
-                backgroundColor: "white",
-                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <Typography variant="body1">{item.name}</Typography>
-              <motion.span
-                key={item.price}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                style={{
-                  color: item.change >= 0 ? "green" : "red",
-                  fontSize: "20px",
-                }}
-              >
-                {item.price} {item.change >= 0 ? "🔼" : "🔽"}
-              </motion.span>
-            </motion.div>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+    <div>
+      <div id="tradingview-widget-forex" style={{ width: "100%", marginBottom: "20px" }}>
+        {/* Forex and Gold Widget will be loaded here */}
+      </div>
+      <div id="tradingview-widget-crypto" style={{ width: "100%", marginBottom: "20px" }}>
+        {/* Crypto Widget will be loaded here */}
+      </div>
+    </div>
   );
 };
 
-export default MarketTicker;
+export default Ticker;

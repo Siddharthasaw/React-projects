@@ -1,8 +1,8 @@
 
 import React from "react";
-import { Box, Button, Grid, TextField, Typography,Container } from "@mui/material";
+import { Box, Button, TextField, Typography,Container } from "@mui/material";
 import image from "../assets/contact_left_image.png"; // Replace with your actual image path
-
+import Grid from "@mui/material/Grid";
 function ContactForm() {
     return(
 
@@ -40,7 +40,7 @@ function ContactForm() {
 
           {/* Right Side - Contact Form */}
           <Grid item xs={12} md={6}>
-            <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
+            <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2, color:"#3b6ea5" }}>
               Contact Us
             </Typography>
             <Grid container spacing={2}>
@@ -70,7 +70,7 @@ function ContactForm() {
                 <Button
                   variant="contained"
                   color="warning"
-                  sx={{ textTransform: "none" }}
+                  sx={{ textTransform: "none", backgroundColor:'#3b6ea5' }}
                 >
                   Submit
                 </Button>
