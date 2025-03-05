@@ -10,7 +10,7 @@ const MarketNews = () => {
   return (
     
     <Box sx={{ p: 4, backgroundColor: "#f5f5f5" }}>
-      <Typography variant="h4" sx={{ textAlign: "center", fontWeight: "bold", mb: 2 }}>
+      <Typography variant="h4" sx={{ textAlign: "center", fontWeight: "bold", mb: 2, color:'#007aff' }}>
         Read Our Latest Blogs
       </Typography>
       <Typography variant="body1" sx={{ textAlign: "center", mb: 4 }}>

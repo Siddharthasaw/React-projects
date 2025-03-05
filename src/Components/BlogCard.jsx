@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -6,91 +6,72 @@ import {
   Typography,
   Box,
   Container,
+  Button,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { Link } from "react-router-dom";
-import image1 from "../assets/testimonial_images/image.png"; // Replace with your actual image path
-
-const blogData = [
-  {
-    id: 1,
-    title: "Copa America: Luis Suarez from devastated US",
-    date: "March 26, 2020",
-    category: "TECHNOLOGY",
-    image: image1,
-    content: "Full blog details about Copa America...",
-  },
-  {
-    id: 2,
-    title: "Cheap smartphone sensor could help you",
-    date: "March 26, 2020",
-    category: "TECHNOLOGY",
-    image: "https://via.placeholder.com/300",
-    content: "Detailed blog post about smartphone sensor...",
-  },
-  {
-    id: 3,
-    title: "Smartphone sensor: A game changer",
-    date: "March 26, 2020",
-    category: "TECHNOLOGY",
-    image: "https://via.placeholder.com/300",
-    content: "Smartphone sensor revolution...",
-  },
-  {
-    id: 4,
-    title: "Latest innovations in AI",
-    date: "March 26, 2020",
-    category: "TECHNOLOGY",
-    image: "https://via.placeholder.com/300",
-    content: "AI is changing the world...",
-  },
-
-  {
-    id: 5,
-    title: "Latest innovations in AI",
-    date: "March 26, 2020",
-    category: "TECHNOLOGY",
-    image: "https://via.placeholder.com/300",
-    content: "AI is changing the world...",
-  },
-
-  {
-    id: 6,
-    title: "Latest innovations in AI",
-    date: "March 26, 2020",
-    category: "TECHNOLOGY",
-    image: "https://via.placeholder.com/300",
-    content: "AI is changing the world...",
-  },
-
-  {
-    id: 7,
-    title: "Latest innovations in AI",
-    date: "March 26, 2020",
-    category: "TECHNOLOGY",
-    image: "https://via.placeholder.com/300",
-    content: "AI is changing the world...",
-  },
-
-  {
-    id: 8,
-    title: "Latest innovations in AI",
-    date: "March 26, 2020",
-    category: "TECHNOLOGY",
-    image: "https://via.placeholder.com/300",
-    content: "AI is changing the world...",
-  },
-];
+import { createSlug } from "../Components/slugify"; // Import createSlug function
+import blogData from "../data/data"; // Import the blog data
 
 export default function BlogCard() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+
+  const totalPages = Math.ceil(blogData.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = blogData.slice(startIndex, endIndex);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    const maxPageNumbersToShow = 5; // Maximum number of page numbers to show
+    let startPage = Math.max(1, currentPage - Math.floor(maxPageNumbersToShow / 2));
+    let endPage = Math.min(totalPages, startPage + maxPageNumbersToShow - 1);
+
+    if (endPage - startPage + 1 < maxPageNumbersToShow) {
+      startPage = Math.max(1, endPage - maxPageNumbersToShow + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(
+        <Button
+          key={i}
+          onClick={() => handlePageChange(i)}
+          variant={i === currentPage ? "contained" : "outlined"}
+          sx={{ mx: 1 }}
+        >
+          {i}
+        </Button>
+      );
+    }
+
+    return pageNumbers;
+  };
+
   return (
     <Box>
       <Container maxWidth="lg" sx={{ padding: "60px 0 60px 0" }}>
         <Grid container spacing={3} sx={{ padding: 3 }}>
-          {blogData.map((blog) => (
+          {currentData.map((blog) => (
             <Grid item size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={blog.id}>
               <Link
-                to={`/blog/${blog.id}`}
+                to={`/blog/${createSlug(blog.title)}`}
                 state={blog}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
@@ -137,6 +118,23 @@ export default function BlogCard() {
             </Grid>
           ))}
         </Grid>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+          <Button
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+            sx={{ mx: 1 }}
+          >
+            Previous
+          </Button>
+          {renderPageNumbers()}
+          <Button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            sx={{ mx: 1 }}
+          >
+            Next
+          </Button>
+        </Box>
       </Container>
     </Box>
   );
