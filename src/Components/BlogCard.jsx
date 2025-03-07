@@ -133,9 +133,11 @@ export default function BlogCard() {
             sx={{ mx: 1 }}
           >
             Next
-          </Button>
+          </Button>       
         </Box>
       </Container>
     </Box>
   );
 }
+
+          
