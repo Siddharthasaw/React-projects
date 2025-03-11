@@ -15,7 +15,7 @@ const Banner = () => {
             component="img"
             src={bannerImage}
             alt="Banner"
-            sx={{ width: "100%", borderRadius: "10px", boxShadow: 3 }}
+            sx={{ width: "100%", borderRadius: "10px", boxShadow: 3, margin: "8px auto" }}
           />
         </motion.div>
       </Container>

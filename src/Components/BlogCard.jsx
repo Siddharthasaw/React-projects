@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -7,20 +7,49 @@ import {
   Box,
   Container,
   Button,
+  CircularProgress,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { Link } from "react-router-dom";
-import { createSlug } from "../Components/slugify"; // Import createSlug function
-import blogData from "../data/data"; // Import the blog data
+import { createSlug } from "../Components/slugify";
 
 export default function BlogCard() {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 12;
 
-  const totalPages = Math.ceil(blogData.length / itemsPerPage);
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  const fetchBlogs = async () => {
+    try {
+      const response = await fetch('http://localhost/mql-dashboard/api/fetch_blog.php');
+      const result = await response.json();
+      
+      if (result.status === 'success') {
+        const formattedBlogs = result.data.map(blog => ({
+          id: blog.id,
+          title: blog.title,
+          author: blog.author,
+          date: blog.created_at,
+          category: 'FOREX',
+          image: blog.featured_image_url,
+        }));
+        setBlogs(formattedBlogs);
+      }
+    } catch (error) {
+      console.error('Error fetching blogs:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const totalPages = Math.ceil(blogs.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentData = blogData.slice(startIndex, endIndex);
+  const currentData = blogs.slice(startIndex, endIndex);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -40,7 +69,7 @@ export default function BlogCard() {
 
   const renderPageNumbers = () => {
     const pageNumbers = [];
-    const maxPageNumbersToShow = 5; // Maximum number of page numbers to show
+    const maxPageNumbersToShow = 5;
     let startPage = Math.max(1, currentPage - Math.floor(maxPageNumbersToShow / 2));
     let endPage = Math.min(totalPages, startPage + maxPageNumbersToShow - 1);
 
@@ -64,10 +93,18 @@ export default function BlogCard() {
     return pageNumbers;
   };
 
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '400px' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
   return (
     <Box>
-      <Container maxWidth="lg" sx={{ padding: "60px 0 60px 0" }}>
-        <Grid container spacing={3} sx={{ padding: 3 }}>
+      <Container maxWidth="xl" sx={{ margin: "15px auto" }}>
+        <Grid container spacing={3} sx={{ padding: { xs: 2, sm: 2, md: 3, lg: 3 } }}>
           {currentData.map((blog) => (
             <Grid item size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={blog.id}>
               <Link
@@ -139,5 +176,3 @@ export default function BlogCard() {
     </Box>
   );
 }
-
-          
