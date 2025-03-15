@@ -1,0 +1,257 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9fafb;
+  color: #101828;
+}
+
+h1,
+h2 {
+  font-weight: bold;
+}
+
+/* Header Section */
+.hero-competition-section {
+  background: url(../images/bg-hero-competition-section.jpeg) no-repeat center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding: 250px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-competition-section h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.hero-competition-section p {
+  font-size: 1.5rem;
+  margin-bottom: 50px;
+}
+
+.btn-hero-competition-section {
+  background-color: #ffffff;
+  color: #0b1426;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.btn-hero-competition-section:hover {
+  background-color: #f0f0f0;
+}
+
+/* Stats Cards */
+
+.competition-stats {
+  margin-top: 100px !important;
+  margin-bottom: 100px !important;
+}
+
+.competition-card-section {
+  margin-top: 100px !important;
+  margin-bottom: 100px !important;
+}
+
+.competition-step-section {
+  margin-top: 100px !important;
+  margin-bottom: 100px !important;
+}
+
+.stats-card {
+  text-align: center;
+  border-radius: 12px;
+  padding: 50px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stats-card.highlight {
+  border: 2px solid #699D89;
+  box-shadow: 0 8px 15px rgba(0, 91, 255, 0.2);
+  padding: 100px;
+}
+
+.stats-card h3 {
+  font-size: 2rem;
+  color: #699D89;
+}
+
+/* Competitions Cards */
+.competition-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 50px;
+  text-align: left;
+}
+
+.competition-card img {
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.competition-card h4 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.badge {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* How to Enter Section */
+.how-to-enter h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.step-number {
+  font-size: 2.5rem;
+  color: #699D89;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.step-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Call to Action */
+.cta-section {
+  background-color: #17423C;
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  border-radius: 12px;
+}
+
+.cta-section button {
+  background-color: white;
+  color: #0b1426;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.competition-cta {
+  margin-top: 100px !important;
+  margin-bottom: 100px !important;
+}
+
+.cta-section button:hover {
+  background-color: #f0f0f0;
+}
+
+.tournament_img {
+  position: relative;
+}
+.tournament_img_content {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translate(0, -50%);
+  color: #fff !important;
+}
+
+/* General Styles - Small devices (up to 576px) */
+@media (max-width: 576px) {
+  .hero-competition-section {
+    padding: 120px 20px; /* Reduce padding */
+  }
+  .hero-competition-section h1 {
+    font-size: 2.5rem !important; /* Smaller heading */
+  }
+  .hero-competition-section p {
+    font-size: 1.2rem; /* Adjust paragraph size */
+  }
+  .btn-hero-competition-section {
+    padding: 8px 15px; /* Smaller button padding */
+  }
+
+  .stats-card {
+    padding: 20px; /* Reduce padding */
+  }
+
+  .stats-card.highlight {
+    padding: 40px; /* Adjust padding for highlight card */
+  }
+
+  .competition-card {
+    padding: 20px; /* Reduce card padding */
+  }
+
+  .step-number {
+    font-size: 1.8rem; /* Smaller step numbers */
+  }
+
+  .step-title {
+    font-size: 1rem;
+  }
+
+  .cta-section {
+    padding: 30px 15px; /* Reduce padding */
+  }
+
+  .tournament_img_content {
+    left: 10px;
+    font-size: 0.9rem; /* Adjust content font size */
+  }
+}
+
+/* Medium devices (up to 768px) */
+@media (max-width: 768px) {
+  .hero-competition-section {
+    padding: 150px 20px; /* Reduce padding */
+  }
+  .hero-competition-section h1 {
+    font-size: 3rem; /* Adjust heading size */
+  }
+  .hero-competition-section p {
+    font-size: 1.3rem; /* Adjust paragraph size */
+  }
+
+  .stats-card {
+    padding: 10px;
+    align-items: center;
+  }
+
+  .stats-card h3 {
+    font-size: 25px !important;
+  }
+
+  .stats-card.highlight {
+    padding: 60px;
+  }
+
+  .competition-card {
+    padding: 30px; /* Reduce card padding */
+  }
+
+  .competition-stats,
+  .competition-card-section,
+  .competition-step-section {
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+  }
+
+  .step-number {
+    font-size: 2.2rem;
+  }
+
+  .step-title {
+    font-size: 1rem;
+  }
+
+  .cta-section {
+    padding: 40px 20px;
+  }
+}

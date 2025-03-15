@@ -1,0 +1,139 @@
+/* navigation baar*/
+
+ul {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+a {
+  text-decoration: none !important;
+}
+ul li {
+  list-style: none !important;
+}
+img {
+  max-width: 100% !important;
+  height: 0 auto !important;
+}
+
+.header_logo {
+  width: 100px !important;
+  height: auto;
+  margin-top: 12px;
+}
+
+
+
+/* Dropdown menu styles */
+.header_menu_ul {
+  list-style: none;
+  padding: 0;
+  margin: 0px;
+  display: flex; /* Makes the menu inline */
+  gap: 20px; /* Adds spacing between menu items */
+}
+
+.header_menu_ul li {
+  position: relative;
+}
+
+.header_menu_dropdown_button {
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #333;
+  text-decoration: none;
+}
+
+/* Mega Menu Styles */
+.mega-menu {
+  margin-top: 10px !important;
+
+  width: 600px;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.mega-menu .dropdown-header {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #6c757d;
+}
+
+/* Partnership Section */
+.header_right_in_partnership {
+  margin-right: 10px;
+}
+
+.header_right_in_partnership a {
+  text-transform: capitalize;
+  color: #000;
+  font-weight: 500;
+  font-size: 15px;
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
+
+/* Button Styles */
+.header_button {
+  text-align: right;
+  margin: 20px 0;
+}
+
+.header_button button {
+  padding: 5px 20px !important;
+  text-transform: capitalize;
+  font-size: 15px;
+  border: 1px solid #000;
+}
+
+.header_button_light {
+  background: #000 !important;
+  color: #fff !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header_button_light:hover {
+  background: transparent !important;
+  color: #000 !important;
+}
+
+.header_button_light_only_border {
+  border: none !important;
+  margin-right: 6px;
+  border: 1px solid transparent !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header_button_light_only_border:hover {
+  background: transparent !important;
+  border: 1px solid #000 !important;
+  color: #000 !important;
+}
+
+/* Menu Styles */
+.header_menu {
+  margin: 20px 0;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 1023px) {
+  .header_sm {
+    display: block !important;
+  }
+  .header_lg {
+    display: none !important;
+  }
+  .result_counter_container {
+    text-align: center !important;
+  }
+  .result_counter {
+    margin-bottom: 20px !important;
+  }
+  .results_proven_in_icon img {
+    max-width: 50px !important;
+  }
+  .results_proven_in_heading,
+  .results_proven_in_subheading {
+    text-align: center !important;
+  }
+}

@@ -10,7 +10,7 @@ const fetchBlogs = async () => {
         author,
         created_at,
         category: 'FOREX',
-        image: featured_image_url,
+        image: featured_image,
         content,
       }));
     }

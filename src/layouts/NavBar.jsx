@@ -3,7 +3,7 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  IconButton, 
+  IconButton,
   InputBase,
   Button,
   Box,
@@ -35,8 +35,19 @@ const Header = () => {
 
   const handleSearch = (e) => {
     if (e.key === "Enter" || e.type === "click") {
-      console.log("Search:", searchValue);
-      // Yahan aap apna search operation perform kar sakte hain
+      fetch(`http://localhost/mql-dashboard/api/search.php?query=${searchValue}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
     }
   };
 
@@ -52,7 +63,6 @@ const Header = () => {
           alignItems: "center",
         }}
       >
-        {/* Left Section */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <Link to="/" style={{ textDecoration: "none" }}>
             <img src={logo} alt="MQL5 Logo" style={{ height: "40px" }} />
@@ -73,14 +83,13 @@ const Header = () => {
           </Box>
         </Box>
 
-        {/* Search Bar aur Button ko Ek Container Mein Wrap Karna */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
               alignItems: "center",
               gap: 2,
-              width: "400px", // Increase the width
+              width: "400px",
               backgroundColor: "white",
               borderRadius: 5,
               padding: "0px 10px",
@@ -95,12 +104,11 @@ const Header = () => {
               onChange={(e) => setSearchValue(e.target.value)}
               onKeyPress={handleSearch}
             />
-            <IconButton onClick={handleSearch}>
+            <IconButton onClick={(e) => handleSearch(e)}>
               <SearchIcon style={{ color: "#3b6ea5" }} />
             </IconButton>
           </Box>
 
-          {/* Desktop Navigation */}
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
@@ -119,7 +127,6 @@ const Header = () => {
           </Box>
         </Box>
 
-        {/* Mobile Menu Button */}
         <IconButton
           sx={{ display: { xs: "block", md: "none" } }}
           onClick={toggleMobileMenu}
@@ -128,7 +135,6 @@ const Header = () => {
         </IconButton>
       </Toolbar>
 
-      {/* Mobile Drawer */}
       <Drawer anchor="right" open={mobileMenuOpen} onClose={toggleMobileMenu}>
         <List>
           <ListItem button component={Link} to="/">
@@ -205,35 +211,12 @@ const Navbar = () => {
               {index === 4 && <PsychologyIcon sx={{ color: "#ffa500" }} />}
               {index === 5 && <CalendarTodayIcon sx={{ color: "#ffa500" }} />}
               {index === 6 && <LanguageIcon sx={{ color: "#ffa500" }} />}
-              {item}
             </Typography>
           ))}
-        </Box>
-
-        <Box>
-          <Typography
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              color: "#333",
-            }}
-          >
-            <TelegramIcon sx={{ color: "#ffa500" }} /> Join Our Telegram Channel
-          </Typography>
         </Box>
       </Toolbar>
     </AppBar>
   );
 };
 
-const HeaderNavbar = () => {
-  return (
-    <>
-      <Header />
-      <Navbar />
-    </>
-  );
-};
-
-export default HeaderNavbar;
+export default Header;

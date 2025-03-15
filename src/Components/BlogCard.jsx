@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { Link } from "react-router-dom";
-import { createSlug } from "../Components/slugify";
 
 export default function BlogCard() {
   const [blogs, setBlogs] = useState([]);
@@ -25,7 +24,7 @@ export default function BlogCard() {
 
   const fetchBlogs = async () => {
     try {
-      const response = await fetch('http://localhost/mql-dashboard/api/fetch_blog.php');
+      const response = await fetch('http://localhost/mql5/blog-dashboard/api/fetch_blog.php');
       const result = await response.json();
       
       if (result.status === 'success') {
@@ -35,7 +34,10 @@ export default function BlogCard() {
           author: blog.author,
           date: blog.created_at,
           category: 'FOREX',
-          image: blog.featured_image_url,
+          image: blog.featured_image ? 
+            `http://localhost/mql5/blog-dashboard/uploads/${blog.featured_image}` : 
+            'https://via.placeholder.com/400x200',
+          slug: blog.seo_slug || createSlug(blog.title), // Use seo_slug if available, otherwise generate a slug
         }));
         setBlogs(formattedBlogs);
       }
@@ -108,7 +110,7 @@ export default function BlogCard() {
           {currentData.map((blog) => (
             <Grid item size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={blog.id}>
               <Link
-                to={`/blog/${createSlug(blog.title)}`}
+                to={`http://localhost/mql5/blogs/posts.php/${blog.slug}`} // Use the slug from the API or generated slug
                 state={blog}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
