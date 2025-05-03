@@ -5,10 +5,14 @@ import Connection from './database/db.js';
 
 import DefaultData from './defaults.js';
 
+import cors from 'cors';
+
 
 import Route from './routes/route.js';
      
 const app = express();
+
+app.use(cors());
 
 app.use('/', Route);
 
