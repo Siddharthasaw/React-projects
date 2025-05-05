@@ -1,6 +1,6 @@
 
 import Header from './components/Header'
-import InfoHeader from "./components/InfoHeader"
+import InfoHeader from "./components/InfoHeader" 
 import Articles from './components/Articles'
    
 function App() {

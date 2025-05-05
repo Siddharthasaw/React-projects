@@ -1,28 +1,35 @@
-import {Box} from '@mui/material';
+import { Box } from "@mui/material";
 
-import { useEffect } from 'react';
+import { useEffect, useState } from "react";
 
-import {getNews} from '../service/api'
+import { getNews } from "../service/api";
 
-
+import Article from "./Article";
 
 const Articles = () => {
+  const [news, setNews] = useState([]);
 
-    useEffect(() => {
-      dailyNews();
-    }, []);
+  useEffect(() => {
+    dailyNews();
+  }, []);
 
-    const dailyNews = async () => {
-        let response = await getNews();
-    }
+  const dailyNews = async () => {
+    let response = await getNews();
+    console.log(response.data); // Log the response to check the data
+    setNews(response.data);
+  };
 
-    return (
-        <>
-           <Box>
-                         
-           </Box>
-        </>
-    )
-}
+  return (
+    <>
+      <Box>
+        {
+          news.map(data  => (
+            <Article data={data}/> // Pass `data` as a prop
+          ))
+        }
+      </Box>
+    </>
+  );
+};
 
 export default Articles;
